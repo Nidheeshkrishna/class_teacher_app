@@ -143,14 +143,36 @@ class _HomePageState extends State<HomePage> {
                     final item = items[index];
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 15.0),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Adjust the radius as needed
+                      child: InkWell(
+                        onTap: () {
+                          if (item['id'] == 1) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const StudentsPage(),
+                              ),
+                            );
+                          }
+
+                          if (item['id'] == 2) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SubjectsPage(),
+                              ),
+                            );
+                          }
+                        },
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                10.0), // Adjust the radius as needed
+                          ),
+                          leading:
+                              Icon(item['icon'], color: item['icon_color']),
+                          title: Text(item['title']),
+                          tileColor: item['color'],
                         ),
-                        leading: Icon(item['icon'], color: item['icon_color']),
-                        title: Text(item['title']),
-                        tileColor: item['color'],
                       ),
                     );
                   },
